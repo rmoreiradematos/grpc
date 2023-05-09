@@ -1,0 +1,25 @@
+POST http://localhost:8080/echo
+Content-Type: application/json
+
+{
+  "question_types": [
+    {
+      "code" : "rodrigo",
+      "name" : "rodrigo",
+      "description": "ahahah",
+      "active" : true
+    },
+    {
+      "code" : "1",
+      "name" : "2",
+      "description": "3",
+      "active" : false
+    }
+  ],
+  "group_institutions": [
+    {
+      "name" : "rodrigo"
+    }
+  ]
+}
+

@@ -1,0 +1,289 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "./proto";
+import "google/api/annotations.proto";
+
+service SyncUnity{
+    rpc Echo(NoSql) returns (NoSql){
+        option(google.api.http) = {
+            post: "/echo"
+            body: "*"
+        };
+    }
+}
+
+message NoSql{
+    message GroupInstitutions{
+        string name =1;
+    }
+
+    message QuestionTypes{
+        string code = 1;
+        string name = 2;
+        string description = 3;
+        bool active = 4;
+    }
+
+    message Institutions{
+        string name = 1;
+        string slang = 2;
+        int32 user_id = 3;
+        int32 group_institution_id = 4;
+        string email = 5;
+        string phone = 6;
+        string zip_code = 7;
+        string street = 8;
+        string number = 9;
+        string complement = 10;
+        string city = 11;
+        string district = 12;
+        string state = 13;
+    }
+
+    message Disciplines{
+        int32 institution_id = 1;
+        string code = 2;
+        string name = 3;
+        bool active = 4;
+    }
+
+    message AssetType{
+        string code = 1;
+        string name = 2;
+    }
+
+
+    message Assets{
+        int32 asset_type_id = 1;
+        string tag = 2;
+        string name = 3;
+        string description = 4;
+        string image = 5;
+    }
+
+    message EducationalLevels{
+        string code = 1;
+        string name = 2;
+        string description = 3;
+        bool active = 4;
+    }
+
+    message Gamemaps{
+        string code = 1;
+        string name = 2;
+        bool active = 3;
+        string description = 4;
+    }
+
+    message AcademicYears{
+        int32 education_level_id = 1;
+        int32 gamemap_id = 2;
+        string code = 3;
+        string name = 4;
+        string description = 5;
+        bool active = 6;
+    }
+
+    message Questions{
+        int32 question_type_id = 1;
+        int32 discipline_id = 2;
+        int32 asset_id = 3;
+        bool active = 4;
+        string enunciated = 5;
+        string question = 6;
+        bool ordened = 7;
+        string tip = 8;
+        int32 academic_year_id = 9;
+    }
+
+    message GradeGroups{
+        int32 institution_id = 1;
+        string name = 2;
+    }
+
+    message Grades{
+        int32 grade_group_id = 1;
+        string name = 2;
+    }
+
+    message BnccDisciplines{
+        int32 grade_id = 1;
+        string code = 2;
+        string field_performance = 3;
+        string thematic_unit = 4;
+        string knowledge_object = 5;
+        string skills = 6;
+    }
+
+    message QuestionsBnccDisciplines{
+        int32 question_id = 1;
+        int32 bncc_discipline_id = 2;
+    }
+
+    message Years{
+        string year = 1;
+        string start_at = 2;
+        string end_at = 3;
+        bool current = 4;
+        int32 institution_id = 5;
+    }
+
+
+    message Users{
+        string name = 1;
+        string email = 2;
+        string password = 3;
+        string cpf = 4;
+        string username = 5;
+    }
+
+
+    message Answers{
+        int32 question_id = 1;
+        int32 asset_id = 2;
+        string text = 3;
+        bool correct = 4;
+        int32 order = 5;
+    }
+
+    message Classes{
+        int32 grade_id = 1;
+        int32 year_id = 2;
+        string code = 3;
+        string name = 4;
+    }
+
+    message GradeYearDisciplines{
+        int32 grade_id = 1;
+        int32 year_id = 2;
+        int32 discipline_id = 3;
+    }
+
+    message Managers{
+        int32 user_id = 1;
+        int32 institution_id = 2;
+        string name = 3;
+
+    }
+
+    message Minigames{
+        int32 gamemap_id = 1;
+        string code = 2;
+        string name = 3;
+        bool active = 4;
+        string description = 5;
+    }
+
+    message MinigameQuestions{
+        int32 question_id = 1;
+        int32 minigame_id = 2;
+    }
+
+    message Npcs{
+        int32 gamemap_id = 1;
+        int32 assets_id = 2;
+        string name = 3;
+        string code = 4;
+        string photo = 5;
+        string coords = 6;
+        string rotation = 7;
+        bool active = 8;
+    }
+
+    message Pedagogues{
+        int32 user_id = 1;
+        int32 institution_id = 2;
+        string name = 3;
+    }
+
+    message Reports{
+        int32 user_id = 1;
+        int32 question_id = 2;
+        int32 minigame_id = 3;
+        int32 answer_id = 4;
+        string start_time = 5;
+        string end_time = 6;
+        int32 interval = 7;
+    }
+
+    message RoleUserInstitution{
+        int32 role_id = 1;
+        int32 user_institution_id = 2;
+    }
+
+    message Roles{
+        string slug = 1;
+        string name = 2;
+        string description = 3;
+    }
+
+    message Teachers{
+        string name = 1;
+        int32 user_id = 2;
+        int32 institution_id = 3;
+    }
+
+    message UidClasses{
+        int32 uid_id = 1;
+        int32 class_id = 2;
+    }
+
+    message UserInstitutionDisciplines{
+        int32 user_teacher_id = 1;
+        int32 institution_id = 2;
+        int32 grade_year_discipline_id = 3;
+    }
+
+
+    message UserInstitutions{
+        int32 user_id = 1;
+        int32 institution_id = 2;
+    }
+
+    message UserParentsStudents{
+        int32 user_parantes_id = 1;
+        int32 institution_id = 2;
+        int32 student_id = 3;
+    }
+
+    message UserStudentClasses{
+        int32 user_id = 1;
+        int32 class_id = 2;
+    }
+
+    repeated GroupInstitutions group_institutions = 1;
+    repeated QuestionTypes question_types = 2;
+    repeated Institutions  institutions = 3;
+    repeated Disciplines disciplines = 4;
+    repeated AssetType asset_types = 5;
+    repeated Assets assets = 6;
+    repeated EducationalLevels educational_levels = 7;
+    repeated Gamemaps gamemaps = 8;
+    repeated AcademicYears academic_years = 9;
+    repeated Questions questions = 10;
+    repeated GradeGroups grade_groups = 11;
+    repeated Grades grades = 12;
+    repeated BnccDisciplines bncc_disciplines = 13;
+    repeated QuestionsBnccDisciplines questions_bncc_disciplies = 14;
+    repeated Years years = 15;
+    repeated Users users = 16;
+    repeated Answers answers = 17;
+    repeated Classes classes = 18;
+    repeated GradeYearDisciplines grade_year_disciplines = 19;
+    repeated Managers managers = 20;
+    repeated Minigames minigames = 21;
+    repeated MinigameQuestions minigame_questions = 22;
+    repeated Npcs npcs = 23;
+    repeated Pedagogues pedagogues = 24;
+    repeated Reports reports = 25;
+    repeated RoleUserInstitution role_user_institution = 26;
+    repeated Roles roles = 27;
+    repeated Teachers teachers = 28;
+    repeated UidClasses uid_classes = 29;
+    repeated UserInstitutionDisciplines user_institution_disciplines = 30;
+    repeated UserInstitutions user_institutions = 31;
+    repeated UserParentsStudents user_parents_students = 32;
+    repeated UserStudentClasses user_student_classes = 33;
+}
